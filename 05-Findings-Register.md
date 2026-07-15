@@ -9,7 +9,7 @@
 ## Findings Summary by Domain and Severity
 
 | Domain | Critical | High | Medium | Low | Total |
-|---|---|---|---|---|---|---|
+|---|---|---|---|---|---|
 | Access Provisioning | 2 | 4 | 2 | 0 | 8 |
 | Role Assignment | 1 | 3 | 1 | 2 | 7 |
 | Segregation of Duties | 0 | 0 | 2 | 0 | 2 |
@@ -41,7 +41,7 @@
 |---|---|
 | **Risk Rating** | **High** |
 | **ISO Reference** | ISO 27001:2022 A.9.2.1 (User registration and de-registration), A.9.2.3 (Management of privileged access rights) |
-| **Description** | Testing of 25 access requests revealed that in 9 cases (36%), users were granted roles that were not included in the approved access request. Common examples include warehouse staff receiving Vendor Creator rights and AP clerks receiving Payment Approver permissions. The provisioning process does not include a verification step where the requestor confirms the access granted matches the request. |
+| **Description** | Testing of 25 access requests revealed that in 10 cases (40%), users were granted roles that were not included in the approved access request. Common examples include warehouse staff receiving Vendor Creator rights and AP clerks receiving Payment Approver permissions. The provisioning process does not include a verification step where the requestor confirms the access granted matches the request. |
 | **Root Cause** | No post-provisioning verification process; IT staff have discretion to add roles they consider "helpful"; no system-enforced limitation preventing role assignments beyond those approved. |
 | **Business Impact** | Users accumulate permissions beyond their job requirements, increasing the risk of unauthorized transactions, data exposure, and fraud. The procurement fraud incident was facilitated by this exact weakness. |
 | **Recommendation** | Implement a two-step provisioning process: (1) IT provisions only the requested roles, (2) Department head must formally acknowledge and confirm access within 5 business days. Deploy ERPNext workflow rules to restrict role assignment to approved role profiles per job function. |
@@ -148,7 +148,7 @@
 | Attribute | Detail |
 |---|---|
 | **Risk Rating** | **Medium** |
-| **ISO Reference** | ISO 27001:2022 A.9.1.2 |
+| **ISO Reference** | ISO 27001:2022 A.9.2.2 |
 | **Description** | Analysis of the 47 custom roles revealed that 28 roles (60%) are near-duplicates of standard ERPNext roles with only minor permission differences. Examples include "Procurement Analyst" (differs from "Purchase User" by two read permissions) and three nearly identical warehouse viewer roles. |
 | **Root Cause** | No role governance or review board; roles created on-demand by IT without approval, consolidation, or impact analysis. |
 | **Business Impact** | Role matrix is complex and difficult to maintain, increasing the risk of mis-assignment and making audits resource-intensive. 1,850+ role assignments must be manually reviewed. |
@@ -161,7 +161,7 @@
 | Attribute | Detail |
 |---|---|
 | **Risk Rating** | **Critical** |
-| **ISO Reference** | ISO 27001:2022 A.9.1.2, A.9.2.3 |
+| **ISO Reference** | ISO 27001:2022 A.9.2.2, A.9.2.3 |
 | **Description** | The custom Warehouse Supervisor role includes create and modify permissions on purchase orders, goods receipt, supplier invoices, and inventory adjustments. This role allows any of the 8 warehouse supervisors to execute the full procure-to-pay cycle without segregation. The $250K fraud incident directly exploited this role. |
 | **Root Cause** | The role was designed for operational convenience without SOD analysis. Role permissions were expanded over time without governance. |
 | **Business Impact** | Eight warehouse supervisors currently hold the capability to perpetrate a similar fraud. The control weakness has existed since the role was created in 2021. |
@@ -187,7 +187,7 @@
 | Attribute | Detail |
 |---|---|
 | **Risk Rating** | **High** |
-| **ISO Reference** | ISO 27001:2022 A.9.2.5, A.9.1.2 |
+| **ISO Reference** | ISO 27001:2022 A.9.2.5, A.9.2.2 |
 | **Description** | Three legacy user accounts (employees hired before 2020) still combine Finance Manager and Procurement Officer role assignments. These employees have changed departments over time but their original role assignments were never adjusted. Combined roles enable cross-functional SOD violations. |
 | **Root Cause** | No internal transfer/re-org process that triggers access review and role adjustment. No periodic recertification. |
 | **Business Impact** | Three senior employees retain incompatible role combinations that enable unauthorized procure-to-pay transactions. |
@@ -200,7 +200,7 @@
 | Attribute | Detail |
 |---|---|
 | **Risk Rating** | **High** |
-| **ISO Reference** | ISO 27001:2022 A.9.1.2, A.9.4.1 |
+| **ISO Reference** | ISO 27001:2022 A.9.4.1 |
 | **Description** | The "Ops Viewer" role, intended for read-only access to operational reports, was found to have write permissions on Stock Ledger Entry and Serial No DocTypes. This affects 22 Operations users who were under the assumption their access was read-only. |
 | **Root Cause** | Role was cloned from a standard role with broader permissions; the permission reduction was incomplete. |
 | **Business Impact** | 22 users can modify stock records and serial numbers, potentially enabling unauthorized inventory adjustments, asset misappropriation, or data integrity issues in inventory reporting. |
@@ -213,7 +213,7 @@
 | Attribute | Detail |
 |---|---|
 | **Risk Rating** | **Low** |
-| **ISO Reference** | ISO 27001:2022 A.9.1.2 |
+| **ISO Reference** | ISO 27001:2022 A.9.2.2 |
 | **Description** | Custom roles follow no standardized naming convention. Examples observed include "WH_Sup_Access", "FinCtrl_v2", "PO-Officer-New", "ProcureViewAccess2024". This makes it difficult for auditors, IT staff, and department heads to identify the purpose and scope of each role. |
 | **Root Cause** | No role naming policy established; roles created by multiple IT team members over several years without coordination. |
 | **Business Impact** | Increased effort for role management and auditing. Higher probability of role mis-assignment. |
@@ -226,7 +226,7 @@
 | Attribute | Detail |
 |---|---|
 | **Risk Rating** | **Low** |
-| **ISO Reference** | ISO 27001:2022 A.9.1.2 |
+| **ISO Reference** | ISO 27001:2022 A.9.2.2 |
 | **Description** | Nine custom roles have zero active user assignments, including "Legacy_Finance_Admin", "Old_Purchase_Supervisor", "Test_Role_Dev", and six others. These roles remain in the ERPNext role table and could be inadvertently assigned to users. |
 | **Root Cause** | No process to remove deprecated roles; no automated cleanup of orphaned role definitions. |
 | **Business Impact** | Unnecessary system complexity; risk of assigning obsolete or test roles to users with unpredictable permission consequences. |
@@ -243,11 +243,11 @@
 | Attribute | Detail |
 |---|---|
 | **Risk Rating** | **Medium** (with compensating controls); **Critical** (design gap) |
-| **ISO Reference** | ISO 27001:2022 A.9.1.2, A.9.4.1 |
-| **Description** | Six users across Procurement and Warehouse departments hold both Vendor Creator and Purchase Order Creator roles, enabling them to create fictitious vendors and generate purchase orders to those vendors. This combined capability directly mirrors the mechanism used in the $250K fraud incident. While some compensating controls exist (PO approval thresholds), they are insufficient to prevent split-PO circumvention. |
+| **ISO Reference** | ISO 27001:2022 A.9.1.1, A.9.4.1 |
+| **Description** | Multiple users across Procurement and Warehouse departments hold both Vendor Creator and Purchase Order Creator roles, enabling them to create fictitious vendors and generate purchase orders to those vendors. This combined capability directly mirrors the mechanism used in the $250K fraud incident. While some compensating controls exist (PO approval thresholds), they are insufficient to prevent split-PO circumvention. |
 | **Root Cause** | No SOD conflict matrix defined for ERPNext role design. Roles were designed around job convenience rather than control principles. |
 | **Business Impact** | Material fraud risk: users can create shell vendors, submit fraudulent purchase orders, and generate false invoices. Estimated fraud potential: $500K+ annually if uncontrolled. |
-| **Recommendation** | Immediately remove either Vendor Creator or Purchase Order Creator from the six affected users' profiles. Redesign procurement roles to enforce a minimum of two-person approval for all vendor creation and PO transactions. Implement automated real-time SOD conflict detection in ERPNext using custom scripts or third-party tools. |
+| **Recommendation** | Immediately remove either Vendor Creator or Purchase Order Creator from the affected users' profiles. Redesign procurement roles to enforce a minimum of two-person approval for all vendor creation and PO transactions. Implement automated real-time SOD conflict detection in ERPNext using custom scripts or third-party tools. |
 
 ---
 
@@ -256,8 +256,8 @@
 | Attribute | Detail |
 |---|---|
 | **Risk Rating** | **Medium** (with compensating controls) |
-| **ISO Reference** | ISO 27001:2022 A.9.1.2, A.9.2.3 |
-| **Description** | Three Finance users (Maria Santos, Elena Popescu, and one additional AP clerk) hold both Invoice Approval and Payment Processing roles, creating a scenario where a single individual can approve a fraudulent invoice and authorize the corresponding payment. The compensating control — weekly payment batch review — has not been performed for 4 months. |
+| **ISO Reference** | ISO 27001:2022 A.9.1.1, A.9.2.3 |
+| **Description** | Two Finance users (Maria Santos and Elena Popescu) hold both Invoice Approval and Payment Processing roles, creating a scenario where a single individual can approve a fraudulent invoice and authorize the corresponding payment. The compensating control — weekly payment batch review — has not been performed for 4 months. |
 | **Root Cause** | Finance department understaffing led to role consolidation; the compensating control (supervisory review) was relied upon but not enforced. |
 | **Business Impact** | Unauthorized payments could be processed without detection. With the compensating control ineffective, the residual risk is critical. |
 | **Recommendation** | Immediately separate invoice approval and payment processing roles across three user accounts. Assign approval to the Finance Manager role and payment processing to the Accounts Payable role. Reinstate the weekly payment review with mandatory sign-off and escalation for missed reviews. |

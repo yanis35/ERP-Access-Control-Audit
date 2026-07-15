@@ -46,9 +46,10 @@ This audit was engaged to comprehensively review user access provisioning, role 
 |---|---|
 | Total ERP Users Reviewed | 214 |
 | Active User Accounts | 214 |
-| Deactivated/Orphaned Accounts Identified | 11 |
+| Orphaned Roles (no active users) | 9 |
+| Orphaned User Accounts | 2 |
 | Unique Role Definitions | 87 (40 standard ERPNext + 47 custom) |
-| Critical Roles Identified | 12 |
+| Critical Roles Identified | 5 |
 | Access Request Records Sampled | 25 |
 | Terminated User Accounts Tested | 5 |
 | SOD Conflict Pairs Defined | 12 |

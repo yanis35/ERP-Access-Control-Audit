@@ -31,33 +31,33 @@ A statistical sample of 25 access requests was selected from 147 access request 
 
 | Req ID | User | Requested Access | Approved By | Actual Access Granted | Basis of Testing | Finding |
 |---|---|---|---|---|---|---|
-| AR-001 | Robert Chen | Procurement + Warehouse roles | Warehouse Mgr | Procurement Officer + Warehouse Supervisor + Vendor Creator | Role mismatch — extra role (Vendor Creator) not requested | F-001 |
-| AR-002 | Maria Santos | Accounts Payable role | Finance Mgr | Accounts Payable + Payment Approver | Role mismatch — extra role assigned | F-002 |
-| AR-003 | James Okonkwo | Operations Analyst role | Ops Director | Operations Analyst (correct) | Matched | Pass |
-| AR-004 | Priya Sharma | Accountant role | Finance Mgr | Accountant (correct) | Matched | Pass |
+| AR-001 | Robert Chen | Procurement + Warehouse roles | Warehouse Manager | Procurement Officer + Warehouse Supervisor + Vendor Creator | Role mismatch — extra role (Vendor Creator) not requested | F-001 |
+| AR-002 | Maria Santos | Accounts Payable role | Finance Manager | Accounts Payable + Payment Approver | Role mismatch — extra role assigned | F-002 |
+| AR-003 | James Okonkwo | Operations Analyst role | Operations Director | Operations Analyst (correct) | Matched | Pass |
+| AR-004 | Priya Sharma | Accountant role | Finance Manager | Accountant (correct) | Matched | Pass |
 | AR-005 | David Kim | IT Support role | IT Director | IT Support + System Administrator (read-only) | Extra role assigned; no approval for SysAdmin access | F-003 |
-| AR-006 | Lisa Thompson | Procurement Officer role | Procurement Head | Procurement Officer + Buyer | Extra role assigned, not requested | F-001 |
-| AR-007 | Ahmed Hassan | Inventory Clerk role | Warehouse Mgr | Inventory Clerk (correct) | Matched | Pass |
+| AR-006 | Lisa Thompson | Procurement Officer role | Procurement Manager | Procurement Officer + Buyer | Extra role assigned, not requested | F-001 |
+| AR-007 | Ahmed Hassan | Inventory Clerk role | Warehouse Manager | Inventory Clerk (correct) | Matched | Pass |
 | AR-008 | Elena Popescu | Finance Controller role | CFO | Finance Controller (correct) | Matched | Pass |
-| AR-009 | Carlos Mendez | Procurement Manager role | Procurement Head | Procurement Manager + Vendor Creator | Extra permission (vendor master create) not approved | F-001 |
+| AR-009 | Carlos Mendez | Procurement Manager role | Procurement Manager | Procurement Manager + Vendor Creator | Extra permission (vendor master create) not approved | F-001 |
 | AR-010 | Yuki Tanaka | Sales Analyst role | Sales Director | Sales Analyst (correct) | Matched | Pass |
 | AR-011 | Sarah Johnson | HR Executive role | HR Director | HR Executive (correct) | Matched | Pass |
-| AR-012 | Michael Brown | Accounts Receivable role | Finance Mgr | Accounts Receivable + Accountant (modify) | Extra role; no seg approval for dual accounting roles | F-002 |
-| AR-013 | Laura Davis | Logistics Coordinator role | Ops Director | Logistics Coordinator (correct) | Matched | Pass |
-| AR-014 | Kevin Wilson | Buyer role | Procurement Head | Buyer + Procurement Officer (modify) | Higher privilege level than requested | F-004 |
+| AR-012 | Michael Brown | Accounts Receivable role | Finance Manager | Accounts Receivable + Accountant (modify) | Extra role; no seg approval for dual accounting roles | F-002 |
+| AR-013 | Laura Davis | Logistics Coordinator role | Operations Director | Logistics Coordinator (correct) | Matched | Pass |
+| AR-014 | Kevin Wilson | Buyer role | Procurement Manager | Buyer + Procurement Officer (modify) | Higher privilege level than requested | F-004 |
 | AR-015 | Angela Martinez | Fleet Supervisor role | Fleet Manager | Fleet Supervisor (correct) | Matched | Pass |
 | AR-016 | Thomas Lee | Payroll Officer role | HR Director | Payroll Officer (correct) | Matched | Pass |
 | AR-017 | Rachel Green | Customer Account Manager role | Sales Director | Customer Account Manager + Sales Representative | Extra role assigned | F-002 |
-| AR-018 | Daniel Taylor | Warehouse Supervisor role | Warehouse Mgr | Warehouse Supervisor (correct) | Matched | Pass |
-| AR-019 | Emily White | Accountant role | Finance Mgr | Accountant + Journal Entry Creator | Extra permission (journal entry create) not requested | F-005 |
-| AR-020 | Christopher Hall | Procurement Officer role | Procurement Head | Procurement Officer (correct) | Matched | Pass |
-| AR-021 | Amanda Scott | Operations Analyst role | Ops Director | Operations Analyst + Inventory Adjustor | Extra role (inventory adjustments) not per request | F-004 |
+| AR-018 | Daniel Taylor | Warehouse Supervisor role | Warehouse Manager | Warehouse Supervisor (correct) | Matched | Pass |
+| AR-019 | Emily White | Accountant role | Finance Manager | Accountant + Journal Entry Creator | Extra permission (journal entry create) not requested | F-005 |
+| AR-020 | Christopher Hall | Procurement Officer role | Procurement Manager | Procurement Officer (correct) | Matched | Pass |
+| AR-021 | Amanda Scott | Operations Analyst role | Operations Director | Operations Analyst + Inventory Adjustor | Extra role (inventory adjustments) not per request | F-004 |
 | AR-022 | Brian Adams | IT Support role | IT Director | IT Support (correct) | Matched | Pass |
 | AR-023 | Nicole Baker | HR Executive role | HR Director | HR Executive (correct) | Matched | Pass |
-| AR-024 | Jason Wright | Accounts Payable role | Finance Mgr | Accounts Payable (correct) | Matched | Pass |
-| AR-025 | Stephanie Hill | Logistics Coordinator role | Ops Director | Logistics Coordinator (correct) | Matched | Pass |
+| AR-024 | Jason Wright | Accounts Payable role | Finance Manager | Accounts Payable (correct) | Matched | Pass |
+| AR-025 | Stephanie Hill | Logistics Coordinator role | Operations Director | Logistics Coordinator (correct) | Matched | Pass |
 
-**Result:** 9 of 25 samples (36%) showed control exceptions where users received greater access than approved.
+**Result:** 10 of 25 samples (40%) showed control exceptions where users received greater access than approved.
 
 ---
 
@@ -105,7 +105,7 @@ Five terminated employees were selected from the HR termination log (18-month pe
 | F-001 | Over-Provisioning of Access — Users Receive Unapproved Roles | High | A.9.2.1, A.9.2.3 |
 | F-002 | Role Scope Creep — Multiple Extra Roles Assigned Without Approval | Medium | A.9.2.1 |
 | F-003 | Privileged Access Granted Without Authorization | Critical | A.9.2.3 |
-| F-004 | Higher Privilege Level Than Job Function Requires | High | A.9.1.2 |
+| F-004 | Higher Privilege Level Than Job Function Requires | High | A.9.2.1, A.9.2.3 |
 | F-005 | Financial Transaction Permissions Assigned Without Approval | High | A.9.2.1, A.9.4.1 |
 | F-006 | Delayed Account Deactivation After Employee Termination | Medium | A.9.2.6 |
 | F-007 | Terminated Employee Accounts Remain Active | Critical | A.9.2.6 |

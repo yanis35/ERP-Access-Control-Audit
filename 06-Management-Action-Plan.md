@@ -33,7 +33,7 @@ The Management Action Plan (MAP) will be tracked through the following governanc
 | MAP-01 | F-007 | Immediately deactivate terminated employee accounts for Patricia Nguyen and Rebecca Turner. Verify no unauthorized activity occurred using these accounts. | IT Director | Day 1 | **Critical** | Open |
 | MAP-02 | F-010 | Restructure the Warehouse Supervisor role: remove all procurement permissions (vendor creation, PO creation, invoice processing). Implement as separate procurement roles requiring dual authorization. | IT Director / Procurement Head | Day 7 | **Critical** | Open |
 | MAP-03 | F-011 | Remove all business roles (Finance Manager, Purchase Manager, Stock Manager) from the four IT staff accounts holding System Manager role. Create separate emergency accounts if needed. | IT Director | Day 7 | **Critical** | Open |
-| MAP-04 | F-016 | Remove Vendor Creator or Purchase Order Creator roles from the six affected users identified in the SOD conflict matrix. Implement segregation so no single user holds both roles. | IT Director / Procurement Head | Day 7 | **Critical** | Open |
+| MAP-04 | F-016 | Remove Vendor Creator or Purchase Order Creator roles from affected users identified in the SOD conflict matrix. Implement segregation so no single user holds both roles. | IT Director / Procurement Head | Day 7 | **Critical** | Open |
 | MAP-05 | F-017 | Separate invoice approval and payment processing roles across three finance user accounts (Maria Santos, Elena Popescu, AP clerk). Reassign to Finance Manager and Accounts Payable respectively. | CFO / Finance Controller | Day 7 | **Critical** | Open |
 | MAP-06 | F-013 | Immediately correct the Ops Viewer role permissions — remove write access on Stock Ledger Entry and Serial No DocTypes. Verify 22 affected users now have true read-only access. | IT Director | Day 14 | **High** | Open |
 | MAP-07 | F-003 | Implement a privileged access management (PAM) workflow: new process requiring written approval from IT Director for any System Manager or privileged role assignment. Quarterly recertification of all privileged roles. | IT Director | Day 21 | **High** | Open |
@@ -142,7 +142,7 @@ All accepted risks will be tracked in the findings register with a "Risk Accepte
 
 | Role | Name | Date | Signature |
 |---|---|---|---|
-| CFO (Executive Sponsor) | [Name] | [Date] | |
-| IT Director (Program Owner) | [Name] | [Date] | |
-| Head of Internal Audit | [Name] | [Date] | |
-| Audit Committee Chair | [Name] | [Date] | |
+| CFO (Executive Sponsor) | Sarah Chen | July 25, 2026 | |
+| IT Director (Program Owner) | Marcus Webb | July 25, 2026 | |
+| Head of Internal Audit | Jennifer Liu | July 25, 2026 | |
+| Audit Committee Chair | Robert Kim | July 25, 2026 | |

@@ -10,7 +10,7 @@
 
 ## Engagement Letter
 
-Following the detection of a procurement fraud incident in November 2025 involving unauthorized vendor creation and fraudulent invoice processing (~K loss), the Board of Directors authorized a comprehensive audit of user access controls within the ERPNext environment. This memo confirms the engagement and outlines the audit approach, scope, timeline, and resource requirements.
+Following the detection of a procurement fraud incident in November 2025 involving unauthorized vendor creation and fraudulent invoice processing ($250K loss), the Board of Directors authorized a comprehensive audit of user access controls within the ERPNext environment. This memo confirms the engagement and outlines the audit approach, scope, timeline, and resource requirements.
 
 ---
 

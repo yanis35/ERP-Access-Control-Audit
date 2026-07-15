@@ -2,7 +2,7 @@
 
 **Audit Area:** Role-Based Access Control (RBAC) Design and Role Assignment Practices
 **Roles Analyzed:** 87 (40 standard ERPNext + 47 custom roles)
-**Standards:** ISO 27001:2022 A.9.1.2, A.9.2.3, A.9.2.5
+**Standards:** ISO 27001:2022 A.9.2.2, A.9.2.3, A.9.2.5
 
 ---
 
@@ -72,7 +72,7 @@ ERPNext ships with granular roles designed around functional modules. AeroLogist
 ### F-009: Role Proliferation — 47 Custom Roles with Minimal Differentiation
 
 **Rating:** Medium  
-**ISO Reference:** A.9.1.2  
+**ISO Reference:** A.9.2.2  
 **Description:** Analysis of the 47 custom roles revealed that 28 roles (60%) are near-duplicates of standard ERPNext roles with only minor permission differences (e.g., "Procurement Analyst (Custom)" differs from "Purchase User (Standard)" by only two additional read permissions). Numerous roles have overlapping permission sets, making the role matrix confusing to maintain.  
 **Root Cause:** No role governance process; roles created on-demand by IT without approval from a role management committee.  
 **Business Impact:** Increased administrative overhead, higher risk of mis-assignment, difficult to audit.
@@ -80,7 +80,7 @@ ERPNext ships with granular roles designed around functional modules. AeroLogist
 ### F-010: Warehouse Supervisor Role Over-Permissioned with Procurement Rights
 
 **Rating:** Critical  
-**ISO Reference:** A.9.1.2, A.9.2.3  
+**ISO Reference:** A.9.2.2, A.9.2.3  
 **Description:** The custom Warehouse Supervisor role includes permissions to create purchase orders, receive goods against POs, and create supplier invoices — all procurement functions that should be segregated from warehouse operations. The fraud incident exploited this exact control weakness.  
 **Root Cause:** The role was originally designed for a "super-user" warehouse lead with no consideration for SOD principles.  
 **Business Impact:** Directly enabled the $250K procurement fraud. Warehouse staff can perpetrate procure-to-pay fraud without detection.
@@ -96,7 +96,7 @@ ERPNext ships with granular roles designed around functional modules. AeroLogist
 ### F-012: Legacy Accounts Combine Finance Manager and Procurement Officer Roles
 
 **Rating:** High  
-**ISO Reference:** A.9.2.5, A.9.1.2  
+**ISO Reference:** A.9.2.5, A.9.2.2  
 **Description:** Three legacy user accounts (pre-2020) still combine Finance Manager and Procurement Officer role assignments. These accounts belong to senior employees who changed departments but retained their original role assignments.  
 **Root Cause:** No recertification program to review and clean up role assignments after role changes or promotions.  
 **Business Impact:** Users with dual finance-procurement roles can execute incompatible transactions, increasing fraud risk.
@@ -104,7 +104,7 @@ ERPNext ships with granular roles designed around functional modules. AeroLogist
 ### F-013: Read-Only Roles Granted Modify Permissions on Sensitive Tables
 
 **Rating:** High  
-**ISO Reference:** A.9.1.2, A.9.4.1  
+**ISO Reference:** A.9.2.2, A.9.4.1  
 **Description:** The "Ops Viewer (Custom)" role, intended for read-only operational reporting, was found to have write permissions on the "Stock Ledger Entry" and "Serial No" DocTypes. This affects 22 users who were assumed to have read-only access.  
 **Root Cause:** Improper permission configuration when the role was cloned from a standard role; permissions were not stripped down to read-only for all DocTypes.  
 **Business Impact:** Unauthorized inventory adjustments possible; 22 users with assumed read-only access can modify stock records.
@@ -112,7 +112,7 @@ ERPNext ships with granular roles designed around functional modules. AeroLogist
 ### F-014: Inconsistent Role Naming Conventions
 
 **Rating:** Low  
-**ISO Reference:** A.9.1.2  
+**ISO Reference:** A.9.2.2  
 **Description:** Custom roles follow no naming standard. Examples include "WH_Sup_Access", "FinCtrl_v2", "PO-Officer-New", and "ProcureViewAccess2024". This makes role identification, audit, and management unnecessarily difficult.  
 **Root Cause:** No role naming policy; roles created by multiple IT staff over several years.  
 **Business Impact:** Increased risk of role mis-assignment and reduced auditability.
@@ -120,7 +120,7 @@ ERPNext ships with granular roles designed around functional modules. AeroLogist
 ### F-015: Orphaned Roles with No Active Users
 
 **Rating:** Low  
-**ISO Reference:** A.9.1.2  
+**ISO Reference:** A.9.2.2  
 **Description:** 9 custom roles have zero active user assignments, including "Legacy_Finance_Admin", "Old_Purchase_Supervisor", and "Test_Role_Dev". These roles remain in the system and could be assigned in error.  
 **Root Cause:** No process for removing deprecated roles after role redesign or user migration.  
 **Business Impact:** Unnecessary complexity in role matrix; risk of unintended permission grants if assigned.

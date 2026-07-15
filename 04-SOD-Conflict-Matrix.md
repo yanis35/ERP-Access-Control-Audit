@@ -4,7 +4,7 @@
 **Users Analyzed:** 214  
 **SOD Conflict Pairs Defined:** 12  
 **User-Level Conflicts Detected:** 10  
-**Standards:** ISO 27001:2022 A.9.1.2, A.9.2.3, A.9.4.1; ITGC General IT Controls
+**Standards:** ISO 27001:2022 A.9.1.1, A.9.2.3, A.9.4.1; ITGC General IT Controls
 
 ---
 
@@ -16,7 +16,7 @@ Segregation of duties conflicts were defined based on the principle that no sing
 
 | Pair ID | Role A | Role B | Incompatible Description | Risk |
 |---|---|---|---|---|
-| SOD-01 | Vendor Creator | Purchase Order Creator | User can create a fake vendor and then create POs to that vendor | **Critical** |
+| SOD-01 | Vendor Creator | Purchase Order Creator/Approver | User can create a fake vendor and then create POs to that vendor | **Critical** |
 | SOD-02 | Purchase Order Creator | Goods Receipt Creator | User can create a PO and then receive goods against it (phantom receipt) | **High** |
 | SOD-03 | Purchase Order Approver | Invoice Creator | User can approve their own PO and then create the related supplier invoice | **High** |
 | SOD-04 | Invoice Creator | Invoice Approver | User can create an invoice and approve it without independent review | **Critical** |
@@ -75,6 +75,8 @@ All 214 users were analyzed against the defined incompatible pair matrix. The fo
 | Operations | 53 | 1 | 1 |
 | Sales & Marketing | 36 | 1 | 0 |
 | IT / System Administration | 17 | 1 | 1 |
+| Human Resources | 12 | 0 | 0 |
+| Executive | 11 | 0 | 0 |
 | **Total** | **214** | **10** | **9** |
 
 ---
@@ -103,14 +105,14 @@ All 214 users were analyzed against the defined incompatible pair matrix. The fo
 
 ---
 
-## Residual Risk Assessment
+## Initial Risk Assessment
 
 | Risk Level | Count | Action Required |
 |---|---|---|
-| **Critical** — Immediate remediation required | 5 conflicts | Disable conflicting role combinations within 7 days; implement compensating controls |
+| **Critical** — Immediate remediation required | 3 conflicts | Disable conflicting role combinations within 7 days; implement compensating controls |
 | **High** — Remediation within 30 days | 4 conflicts | Restructure role assignments; implement monitoring controls |
-| **Medium** — Remediation within 60 days | 1 conflict | Strengthen compensating controls; implement threshold monitoring |
-| **Low** — Acceptable with monitoring | 0 conflicts | Continue periodic review |
+| **Medium** — Remediation within 60 days | 2 conflicts | Strengthen compensating controls; implement threshold monitoring |
+| **Low** — Acceptable with monitoring | 1 conflict | Continue periodic review |
 
 ---
 
