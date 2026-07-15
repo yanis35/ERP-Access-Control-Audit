@@ -79,7 +79,7 @@
 | Attribute | Detail |
 |---|---|
 | **Risk Rating** | **High** |
-| **ISO Reference** | ISO 27001:2022 A.9.1.2 (Access to networks and network services), A.9.2.3 |
+| **ISO Reference** | ISO 27001:2022 A.9.2.1 (User registration and de-registration), A.9.2.3 (Management of privileged access rights) |
 | **Description** | Two users (Kevin Wilson — AR-014, Amanda Scott — AR-021) were assigned roles with modify-level permissions when their access requests specified read-only or create-only access. Kevin, a Buyer, received Procurement Officer with modify rights; Amanda, an Ops Analyst, received Inventory Adjustor rights. |
 | **Root Cause** | ERPNext permission levels are not mapped to job function tiers; IT assigns the closest available role rather than tailoring permissions. |
 | **Business Impact** | Users can modify or delete records that they should only be able to view or create, undermining data integrity. |
