@@ -10,7 +10,7 @@
 
 ## Engagement Letter
 
-Following the detection of a procurement fraud incident in November 2025 involving unauthorized vendor creation and fraudulent invoice processing ($250K loss), the Board of Directors authorized a comprehensive audit of user access controls within the ERPNext environment. This memo confirms the engagement and outlines the audit approach, scope, timeline, and resource requirements.
+In November 2025, a procurement fraud incident was detected involving unauthorized vendor creation and fraudulent invoice processing totaling $250,000. The Board of Directors authorized a comprehensive audit of user access controls within the ERPNext environment in response. This memo confirms the engagement and outlines the audit approach, scope, timeline, and resource requirements.
 
 ---
 
@@ -18,7 +18,7 @@ Following the detection of a procurement fraud incident in November 2025 involvi
 
 1. Evaluate the design and operating effectiveness of user access provisioning controls, including request, authorization, and revocation processes
 2. Assess role assignment practices against the principle of least privilege
-3. Identify segregation of duties (SOD) conflicts across finance, procurement, inventory, and operations modules
+3. Identify Segregation of Duties (SOD) conflicts across finance, procurement, inventory, and operations modules
 4. Verify that terminated user accounts are deactivated in a timely manner
 5. Determine compliance with ISO 27001:2022 Annex A.9 (Access Control) and A.12 (Operations Security) requirements
 6. Provide actionable remediation recommendations to address control deficiencies
@@ -31,9 +31,9 @@ Following the detection of a procurement fraud incident in November 2025 involvi
 
 | Element | Detail |
 |---|---|
-| **ERP System** | ERPNext v14 (self-hosted on Ubuntu 22.04 LTS, PostgreSQL 14, Nginx reverse proxy) |
+| **ERP System** | ERPNext v14 (self-hosted on Ubuntu 22.04 LTS, PostgreSQL 14, nginx reverse proxy) |
 | **Modules** | Finance & Accounts, Procurement, Inventory/Warehouse, Sales, HR/Payroll, System Administration |
-| **User Population** | 214 active users across Finance (28), Procurement (15), Warehouse (42), Operations (53), Sales (36), HR (12), IT/Admin (28) |
+| **User Population** | 214 active users across Finance (28), Procurement (15), Warehouse (42), Operations (53), Sales (36), HR (12), IT / System Administration (17), Executive (11) |
 | **Controls Evaluated** | User access request, authorization, provisioning, deprovisioning, recertification, role management, SOD |
 | **Period** | January 1, 2025 – June 30, 2026 |
 
@@ -57,13 +57,13 @@ Following the detection of a procurement fraud incident in November 2025 involvi
 | **Hosting** | Self-hosted, single-tenant, on-premises at AeroLogistics data center (Chicago, IL) |
 | **Database** | PostgreSQL 14 (primary), Redis (caching) |
 | **Application Servers** | 2 x Ubuntu 22.04 LTS VMs (16 vCPU, 32 GB RAM each) |
-| **Web Server** | Nginx 1.24 reverse proxy with SSL termination |
+| **Web Server** | nginx 1.24 reverse proxy with SSL termination |
 | **Authentication** | Local ERPNext authentication (no LDAP/SSO integration) |
 | **Backup** | Daily automated backups to S3-compatible storage, 30-day retention |
 
 ### Installed Modules
 
-The ERPNext instance runs the following standard modules: Accounts, Buying (Procurement), Selling (Sales), Stock (Inventory/Warehouse), Manufacturing (light use), HR, Payroll, Projects, and Custom Reports.
+The ERPNext instance runs the following standard modules: Accounts, Buying (Procurement), Selling (Sales), Stock (Inventory/Warehouse), Manufacturing (limited deployment), HR, Payroll, Projects, and custom reporting features.
 
 ### User Demographics
 
@@ -75,7 +75,7 @@ The ERPNext instance runs the following standard modules: Accounts, Buying (Proc
 | Operations | 53 | Operations Manager, Depot Manager, Fleet Supervisor, Operations Analyst |
 | Sales & Marketing | 36 | Sales Manager, Sales Representative, Customer Account Manager |
 | Human Resources | 12 | HR Manager, HR Executive, Payroll Officer |
-| IT / System Administration | 17 | System Administrator, Database Administrator, IT Support |
+| IT / System Administration | 17 | System Manager (highest-privilege role in ERPNext, sometimes referred to internally as System Administrator), Database Administrator, IT Support |
 | Executive | 11 | CEO, CFO, COO, Department Heads (read-only access) |
 
 ---
@@ -121,7 +121,7 @@ The ERPNext instance runs the following standard modules: Accounts, Buying (Proc
 
 - Map all 87 roles to job functions and departments
 - Identify orphaned roles (no active users), over-permissioned roles, and role proliferation
-- Review System Administrator and other privileged role assignments
+- Review System Manager and other privileged role assignments
 
 ### Phase 4: Segregation of Duties Analysis (Days 10–16)
 
@@ -135,6 +135,8 @@ The ERPNext instance runs the following standard modules: Accounts, Buying (Proc
 - Draft findings register with risk ratings
 - Conduct exit conference with management
 - Issue final audit report with management action plan
+
+> **Note:** Phases 2-4 run partially in parallel with two auditors assigned.
 
 ---
 
@@ -155,5 +157,16 @@ The ERPNext instance runs the following standard modules: Accounts, Buying (Proc
 |---|---|
 | Lead IT Auditor | 21 days (full engagement) |
 | Senior Auditor | 15 days (phases 2–5) |
-| ERPNext System Administrator (IT) | 5 days (data extraction, technical support) |
+| ERPNext System Manager (IT) | 5 days (data extraction, technical support) |
 | Department Process Owners | 3 days (interviews, walkthroughs) |
+
+---
+
+## Key Management Personnel
+
+| Role | Name |
+|---|---|
+| Chief Financial Officer | Sarah Chen |
+| IT Director | Marcus Webb |
+| Head of Internal Audit | Jennifer Liu |
+| Audit Committee Chair | Robert Kim |

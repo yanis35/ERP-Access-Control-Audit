@@ -1,7 +1,7 @@
 # 05 — Findings Register
 
 **Total Findings:** 18  
-**Critical:** 3 | **High:** 7 | **Medium:** 6 | **Low:** 2  
+**Critical:** 3 | **High:** 9 | **Medium:** 4 | **Low:** 2  
 **Standards Referenced:** ISO 27001:2022, ITGC, COBIT 2019
 
 ---
@@ -12,9 +12,9 @@
 |---|---|---|---|---|---|
 | Access Provisioning | 2 | 4 | 2 | 0 | 8 |
 | Role Assignment | 1 | 3 | 1 | 2 | 7 |
-| Segregation of Duties | 0 | 0 | 2 | 0 | 2 |
+| Segregation of Duties | 0 | 2 | 0 | 0 | 2 |
 | Monitoring & Oversight | 0 | 0 | 1 | 0 | 1 |
-| **Total** | **3** | **7** | **6** | **2** | **18** |
+| **Total** | **3** | **9** | **4** | **2** | **18** |
 
 ---
 
@@ -23,8 +23,8 @@
 | Risk Rating | Count | Criteria |
 |---|---|---|
 | **Critical** | 3 | Control deficiency presents immediate and material risk of financial loss, regulatory penalty, or systemic fraud |
-| **High** | 7 | Control deficiency significantly increases risk of unauthorized access, transaction errors, or undetected fraud |
-| **Medium** | 6 | Control deficiency represents a process weakness that could be exploited in combination with other gaps |
+| **High** | 9 | Control deficiency significantly increases risk of unauthorized access, transaction errors, or undetected fraud |
+| **Medium** | 4 | Control deficiency represents a process weakness that could be exploited in combination with other gaps |
 | **Low** | 2 | Control deficiency is administrative or procedural with limited direct risk to financial reporting or data integrity |
 
 ---
@@ -67,7 +67,7 @@
 |---|---|
 | **Risk Rating** | **Critical** |
 | **ISO Reference** | ISO 27001:2022 A.9.2.3 (Management of privileged access rights) |
-| **Description** | User account for David Kim (IT Support) was assigned the "System Administrator (read-only)" role in addition to IT Support role without any documented approval. No privileged access request process exists. Additionally, 4 IT staff hold System Manager access without periodic review or justification. |
+| **Description** | User account for David Kim (IT Support) was assigned the "System Manager (read-only)" role in addition to IT Support role without any documented approval. No privileged access request process exists. David Kim was granted System Manager (read-only) role without written authorization (sample AR-004). Create a separate finding (e.g., F-019) for periodic privileged access recertification if needed. |
 | **Root Cause** | No privileged access management (PAM) policy or process; IT staff self-provision privileged roles without approval. |
 | **Business Impact** | Unauthorized privileged access enables IT staff to modify system configurations, access all data, and alter or delete audit logs without detection or accountability. |
 | **Recommendation** | Implement a privileged access management process: (1) Separate request and approval workflow for all privileged roles, (2) Enable ERPNext audit trail for all privileged actions, (3) Quarterly recertification of all privileged role assignments, (4) Consider implementing just-in-time (JIT) privileged access. |
@@ -80,10 +80,10 @@
 |---|---|
 | **Risk Rating** | **High** |
 | **ISO Reference** | ISO 27001:2022 A.9.2.1 (User registration and de-registration), A.9.2.3 (Management of privileged access rights) |
-| **Description** | Two users (Kevin Wilson — AR-014, Amanda Scott — AR-021) were assigned roles with modify-level permissions when their access requests specified read-only or create-only access. Kevin, a Buyer, received Procurement Officer with modify rights; Amanda, an Ops Analyst, received Inventory Adjustor rights. |
+| **Description** | Two users (Kevin Wilson — AR-014 (Access Review sample identifier — see 02-User-Access-Provisioning.md), Amanda Scott — AR-021) were assigned roles with modify-level permissions when their access requests specified read-only or create-only access. Kevin, a Buyer, received Procurement Officer with modify rights; Amanda, an Ops Analyst, received Inventory Adjustor rights. |
 | **Root Cause** | ERPNext permission levels are not mapped to job function tiers; IT assigns the closest available role rather than tailoring permissions. |
 | **Business Impact** | Users can modify or delete records that they should only be able to view or create, undermining data integrity. |
-| **Recommendation** | Define standard permission tiers (Read, Create, Modify, Full) for each DocType per job role. Map roles to specific permission tiers and prohibit ad-hoc changes. |
+| **Recommendation** | Define standard permission tiers (Read, Create, Modify, Full) for each DocType per job role. Map roles to specific permission tiers and prohibit ad hoc changes. |
 
 ---
 
@@ -96,7 +96,7 @@
 | **Description** | User Emily White (AR-019) was assigned "Journal Entry Creator" permissions in addition to her Accountant role. Journal entry creation is a high-risk financial function that should require explicit approval. No evidence of approval for this additional permission was found. |
 | **Root Cause** | IT team does not differentiate between standard and high-risk permissions during provisioning. All permissions within a role are assigned uniformly. |
 | **Business Impact** | Users gain access to financial transaction capabilities that can be used to manipulate financial records or conceal unauthorized activities. |
-| **Recommendation** | Segregate high-risk permissions (journal entry creation, vendor setup, payment processing) into separate roles that require department head and finance approval. Implement ERPNext permission rules to restrict sensitive DocTypes. |
+| **Recommendation** | Prohibit assignment of high-risk financial permissions (journal entry creation, vendor setup, payment processing) in combination with standard accounting roles unless explicitly approved by the CFO. |
 
 ---
 
@@ -107,7 +107,7 @@
 | **Risk Rating** | **Medium** |
 | **ISO Reference** | ISO 27001:2022 A.9.2.6 (Removal or adjustment of access rights) |
 | **Description** | Testing of 5 terminated employees revealed that account deactivation occurred an average of 15.7 days after termination, with a range of 13 to 18 days. No formal termination checklist exists requiring HR to notify IT of terminations, and IT has no automated trigger for account deactivation. |
-| **Root Cause** | Manual termination process relies on ad-hoc email notifications from HR to IT; no SLA for deactivation; no automated integration between HR system and ERPNext. |
+| **Root Cause** | Manual termination process relies on ad hoc email notifications from HR to IT; no SLA for deactivation; no automated integration between HR system and ERPNext. |
 | **Business Impact** | Former employees retain system access for extended periods, creating opportunity for unauthorized access, data exfiltration, or retaliatory actions. |
 | **Recommendation** | Establish a formal termination checklist with a 24-hour SLA for account deactivation. Implement automated deprovisioning by connecting the HRIS to ERPNext via API or intermediate middleware. Require IT to confirm deactivation within 1 business day. |
 
@@ -169,14 +169,14 @@
 
 ---
 
-#### F-011 — System Administrator Role Not Segregated from Business Roles
+#### F-011 — System Manager Role Not Segregated from Business Roles
 
 | Attribute | Detail |
 |---|---|
 | **Risk Rating** | **High** |
 | **ISO Reference** | ISO 27001:2022 A.9.2.3 |
 | **Description** | Four of seven System Manager users also hold business roles (Finance Manager, Purchase Manager, Stock Manager). This combination allows IT administrators to execute business transactions and then alter system configurations or audit logs to conceal unauthorized activity. |
-| **Root Cause** | No policy prohibiting IT staff from holding business roles; historically understaffed IT team wore multiple hats. |
+| **Root Cause** | No policy prohibiting IT staff from holding business roles; historically understaffed IT team personnel performed overlapping functional roles. |
 | **Business Impact** | Inability to rely on audit trails for IT staff activity. Potential for undetected fraudulent transactions performed by IT personnel. |
 | **Recommendation** | Remove all business roles from IT staff accounts immediately. Create separate "break-glass" accounts for emergency business transactions by IT, with full logging and mandatory periodic review. Implement a formal policy prohibiting business-role assignment to IT administrators. |
 
@@ -213,8 +213,8 @@
 | Attribute | Detail |
 |---|---|
 | **Risk Rating** | **Low** |
-| **ISO Reference** | ISO 27001:2022 A.9.2.2 |
-| **Description** | Custom roles follow no standardized naming convention. Examples observed include "WH_Sup_Access", "FinCtrl_v2", "PO-Officer-New", "ProcureViewAccess2024". This makes it difficult for auditors, IT staff, and department heads to identify the purpose and scope of each role. |
+| **ISO Reference** | ISO 27001:2022 A.9.1.1 |
+| **Description** | Custom roles follow no standardized naming convention. Examples observed include "WH_Sup_Access", "FinCtrl_v2", "PO-Officer-New", "ProcureViewAccess2024". Recommended: FIN_AccountsManager_Full, WH_WarehouseSupervisor_Modify, PROC_ProcurementOfficer_Create. This makes it difficult for auditors, IT staff, and department heads to identify the purpose and scope of each role. |
 | **Root Cause** | No role naming policy established; roles created by multiple IT team members over several years without coordination. |
 | **Business Impact** | Increased effort for role management and auditing. Higher probability of role mis-assignment. |
 | **Recommendation** | Define and enforce a role naming convention (e.g., [Module]_[Function]_[Level]). Rename all 47 custom roles to conform. Include naming convention requirements in any new role request process. |
@@ -226,7 +226,7 @@
 | Attribute | Detail |
 |---|---|
 | **Risk Rating** | **Low** |
-| **ISO Reference** | ISO 27001:2022 A.9.2.2 |
+| **ISO Reference** | ISO 27001:2022 A.9.2.5 |
 | **Description** | Nine custom roles have zero active user assignments, including "Legacy_Finance_Admin", "Old_Purchase_Supervisor", "Test_Role_Dev", and six others. These roles remain in the ERPNext role table and could be inadvertently assigned to users. |
 | **Root Cause** | No process to remove deprecated roles; no automated cleanup of orphaned role definitions. |
 | **Business Impact** | Unnecessary system complexity; risk of assigning obsolete or test roles to users with unpredictable permission consequences. |
@@ -242,7 +242,7 @@
 
 | Attribute | Detail |
 |---|---|
-| **Risk Rating** | **Medium** (with compensating controls); **Critical** (design gap) |
+| **Risk Rating** | **High** (design gap with partial compensating controls — see F-017 for compensating control reliability) |
 | **ISO Reference** | ISO 27001:2022 A.9.1.1, A.9.4.1 |
 | **Description** | Multiple users across Procurement and Warehouse departments hold both Vendor Creator and Purchase Order Creator roles, enabling them to create fictitious vendors and generate purchase orders to those vendors. This combined capability directly mirrors the mechanism used in the $250K fraud incident. While some compensating controls exist (PO approval thresholds), they are insufficient to prevent split-PO circumvention. |
 | **Root Cause** | No SOD conflict matrix defined for ERPNext role design. Roles were designed around job convenience rather than control principles. |
@@ -255,7 +255,7 @@
 
 | Attribute | Detail |
 |---|---|
-| **Risk Rating** | **Medium** (with compensating controls) |
+| **Risk Rating** | **High** (compensating control inoperative — residual risk is critical). Compensating control CC-02 (weekly payment batch review) has not been performed in 4 months. Until restored, this control cannot be relied upon for risk reduction. |
 | **ISO Reference** | ISO 27001:2022 A.9.1.1, A.9.2.3 |
 | **Description** | Two Finance users (Maria Santos and Elena Popescu) hold both Invoice Approval and Payment Processing roles, creating a scenario where a single individual can approve a fraudulent invoice and authorize the corresponding payment. The compensating control — weekly payment batch review — has not been performed for 4 months. |
 | **Root Cause** | Finance department understaffing led to role consolidation; the compensating control (supervisory review) was relied upon but not enforced. |

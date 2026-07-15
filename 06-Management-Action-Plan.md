@@ -56,7 +56,7 @@ The Management Action Plan (MAP) will be tracked through the following governanc
 | Ref ID | Finding(s) | Action Description | Responsible Owner | Target Date | Priority | Status |
 |---|---|---|---|---|---|---|
 | MAP-10 | F-001, F-002 | Implement two-step provisioning process: (1) IT provisions requested roles only, (2) Department head confirms access within 5 business days via a formal acknowledgment form. Deploy ERPNext workflow rules. | IT Director / HR Head | Day 35 | **High** | Open |
-| MAP-11 | F-004 | Define standard permission tiers (Read, Create, Modify, Full) for each DocType per job role. Map all 87 roles to specific tiers. Prohibit ad-hoc permission changes. | IT Director | Day 40 | **High** | Open |
+| MAP-11 | F-004 | Define standard permission tiers (Read, Create, Modify, Full) for each DocType per job role. Map all 87 roles to specific tiers. Prohibit ad hoc permission changes. | IT Director | Day 40 | **High** | Open |
 | MAP-12 | F-005 | Segregate high-risk financial permissions (journal entry creation, vendor setup, payment processing) into separate roles requiring explicit department head and finance approval. | CFO / IT Director | Day 40 | **High** | Open |
 | MAP-13 | F-008 | Establish semi-annual access recertification program. Schedule first full recertification for Q3 2026. Develop recertification packages using ERPNext user permission reports. | IT Director / Department Heads | Day 45 | **High** | Open |
 | MAP-14 | F-006 | Create formal termination checklist with 24-hour SLA for account deactivation. Implement integration between HRIS and ERPNext for automated deprovisioning trigger. | IT Director / HR Head | Day 50 | **Medium** | Open |

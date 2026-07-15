@@ -61,7 +61,7 @@ ERPNext ships with granular roles designed around functional modules. AeroLogist
 | Procurement Officer | Procurement Officer + Vendor Creator | Over-permissioned | Can create vendors and purchase orders (SOD conflict) |
 | Warehouse Supervisor | Warehouse Supervisor + Stock User + Purchase User | Over-permissioned | Can create POs and receive goods |
 | Accountant (AP) | Accounts Payable User + Payment Approver | Over-permissioned | Can process invoices and approve payments |
-| System Administrator | System Manager + All Email | Appropriate | But no segregation from business roles |
+| System Manager | System Manager + All Email | Appropriate | But no segregation from business roles |
 | Sales Representative | Sales User | Appropriate | Standard, tested role |
 | HR Executive | HR User | Appropriate | Limited to HR transactions |
 
@@ -85,12 +85,12 @@ ERPNext ships with granular roles designed around functional modules. AeroLogist
 **Root Cause:** The role was originally designed for a "super-user" warehouse lead with no consideration for SOD principles.  
 **Business Impact:** Directly enabled the $250K procurement fraud. Warehouse staff can perpetrate procure-to-pay fraud without detection.
 
-### F-011: System Administrator Role Not Segregated from Business Roles
+### F-011: System Manager Role Not Segregated from Business Roles
 
 **Rating:** High  
 **ISO Reference:** A.9.2.3  
 **Description:** Four of seven System Manager users also hold business roles (e.g., Finance Manager, Purchase Manager) on the same account. This allows IT administrators to execute business transactions and then alter audit logs or modify system settings to conceal their actions.  
-**Root Cause:** No policy prohibiting IT staff from holding business roles; IT was historically understaffed and wore multiple hats.  
+**Root Cause:** No policy prohibiting IT staff from holding business roles; IT was historically understaffed and personnel performed overlapping functional roles.  
 **Business Impact:** Loss of audit trail integrity; IT staff can bypass controls on financial transactions.
 
 ### F-012: Legacy Accounts Combine Finance Manager and Procurement Officer Roles
@@ -112,15 +112,15 @@ ERPNext ships with granular roles designed around functional modules. AeroLogist
 ### F-014: Inconsistent Role Naming Conventions
 
 **Rating:** Low  
-**ISO Reference:** A.9.2.2  
-**Description:** Custom roles follow no naming standard. Examples include "WH_Sup_Access", "FinCtrl_v2", "PO-Officer-New", and "ProcureViewAccess2024". This makes role identification, audit, and management unnecessarily difficult.  
+**ISO Reference:** A.9.1.1  
+**Description:** Custom roles follow no naming standard. Examples include "WH_Sup_Access", "FinCtrl_v2", "PO-Officer-New", and "ProcureViewAccess2024". Recommended: FIN_AccountsManager_Full, WH_WarehouseSupervisor_Modify, PROC_ProcurementOfficer_Create. This makes role identification, audit, and management unnecessarily difficult.  
 **Root Cause:** No role naming policy; roles created by multiple IT staff over several years.  
 **Business Impact:** Increased risk of role mis-assignment and reduced auditability.
 
 ### F-015: Orphaned Roles with No Active Users
 
 **Rating:** Low  
-**ISO Reference:** A.9.2.2  
+**ISO Reference:** A.9.2.5  
 **Description:** 9 custom roles have zero active user assignments, including "Legacy_Finance_Admin", "Old_Purchase_Supervisor", and "Test_Role_Dev". These roles remain in the system and could be assigned in error.  
 **Root Cause:** No process for removing deprecated roles after role redesign or user migration.  
 **Business Impact:** Unnecessary complexity in role matrix; risk of unintended permission grants if assigned.

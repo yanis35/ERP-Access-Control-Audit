@@ -9,11 +9,11 @@
 
 ## Background
 
-AeroLogistics Solutions is a mid-size supply chain and logistics company with 500 employees and approximately $150M in annual revenue. The organization operates on a self-hosted ERPNext instance (v14) managing core business processes across finance, operations, inventory, procurement, human resources, and sales modules. The system serves 200+ users across six departments.
+AeroLogistics Solutions is a mid-size supply chain and logistics company with 500 employees and approximately $150M in annual revenue. The organization operates on a self-hosted ERPNext instance (v14) managing core business processes across finance, operations, inventory, procurement, human resources, and sales modules. The system serves 200+ users across 7 departments (Finance, Operations, Procurement, Warehouse, Sales, HR, IT/Admin).
 
-In November 2025, a procurement fraud incident was identified: a warehouse supervisor exploited excessive system privileges to create a fictitious vendor, submit fraudulent purchase orders, and process approximately $250,000 in unauthorized invoices over an eight-month period. The incident remained undetected due to the absence of segregation of duties controls, lack of vendor master change monitoring, and the employee holding incompatible roles across procurement and finance functions.
+In November 2025, a procurement fraud incident was identified: a warehouse supervisor exploited excessive system privileges to create a fictitious vendor, submit fraudulent purchase orders, and process approximately $250,000 in unauthorized invoices over an eight-month period. The incident remained undetected due to the absence of Segregation of Duties controls, lack of vendor master change monitoring, and the employee holding incompatible roles across procurement and finance functions.
 
-This audit was engaged to comprehensively review user access provisioning, role assignments, and segregation of duties across the ERPNext environment.
+This audit was engaged to comprehensively review user access provisioning, role assignments, and Segregation of Duties across the ERPNext environment.
 
 ---
 

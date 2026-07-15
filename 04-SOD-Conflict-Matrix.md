@@ -2,7 +2,7 @@
 
 **Audit Area:** Incompatible Role Combinations in Finance, Procurement, and Operations
 **Users Analyzed:** 214  
-**SOD Conflict Pairs Defined:** 12  
+**SOD Conflict Pairs Defined:** 12 (SOD-01 through SOD-12 — corresponds to F-016)  
 **User-Level Conflicts Detected:** 10  
 **Standards:** ISO 27001:2022 A.9.1.1, A.9.2.3, A.9.4.1; ITGC General IT Controls
 
@@ -59,11 +59,13 @@ All 214 users were analyzed against the defined incompatible pair matrix. The fo
 | **James Okonkwo** | Operations | Purchase Order Creator + Goods Receipt Creator | SOD-02 | Procurement / Warehouse | **High** | Goods receipt requires warehouse confirmation email. However, James can create the confirmation himself. | **High** |
 | **Priya Sharma** | Finance | Journal Entry Creator + Bank Reconciliation User | SOD-07 | Finance / Treasury | **High** | Monthly financial controller review of GL entries over $10K. No review of entries below $10K. | **Medium** |
 | **David Kim** | IT | System Manager + Purchase Manager | SOD-12 | IT / Procurement | **Critical** | No compensating controls. IT policy does not prohibit business role assignments. | **Critical** |
-| **Lisa Thompson** | Procurement | Vendor Creator + Purchase Order Creator | SOD-01 | Procurement | **Critical** | Purchase orders over $5K require manager approval. Lisa's PO creation limit is $4,999. | **High** (limit can be circumvented via split POs) |
+| **Lisa Thompson** | Procurement | Vendor Creator + Purchase Order Creator | SOD-01 | Procurement | **Critical** | Purchase orders over $5K require manager approval. Lisa's PO creation limit is $4,999 (system-enforced per-user PO limit — custom ERPNext configuration). | **High** (limit can be circumvented via split POs) |
 | **Ahmed Hassan** | Warehouse | Goods Receipt Creator + Inventory Adjustor | SOD-02 (partial) | Warehouse / Inventory | **High** | None. Inventory adjustments are logged but not reviewed. | **High** |
 | **Elena Popescu** | Finance | Invoice Approver + Payment Processor | SOD-05 | Accounts Payable | **Critical** | No compensating controls. Elena is the senior finance controller but also processes payments. | **Critical** |
 | **Carlos Mendez** | Procurement | Vendor Creator + Purchase Order Approver | SOD-01 | Procurement | **High** | Purchase orders require CFO approval over $10K. However, Carlos can approve POs under $10K. | **Medium** |
 | **Yuki Tanaka** | Sales | Sales Order Creator + Credit Note Approver | SOD-09 | Sales / Revenue | **Medium** | Credit notes over $1K require sales director approval. Yuki can approve credit notes under $1K. | **Low** |
+
+### Department-Level Conflict Summary
 
 ### Conflict Summary by Department
 
@@ -88,11 +90,11 @@ All 214 users were analyzed against the defined incompatible pair matrix. The fo
 | Control ID | Control Description | Users Affected | Adequacy Rating |
 |---|---|---|---|
 | CC-01 | Weekly payment batch review by Finance Director | Maria Santos | **Inadequate** — Reviews are not being performed regularly (4-month gap) |
-| CC-02 | Monthly GL entry review (entries > $10K threshold) | Priya Sharma | **Partial** — Entries under $10K not reviewed; threshold can be exploited |
+| CC-02 | Monthly GL entry review (entries > $10K threshold) (See F-017) | Priya Sharma | **Partial** — Entries under $10K not reviewed; threshold can be exploited |
 | CC-03 | Purchase order approval required for orders > $5K | Lisa Thompson | **Partial** — PO splitting (multiple POs under $5K) is not prevented |
 | CC-04 | CFO approval required for POs > $10K | Carlos Mendez | **Partial** — $10K threshold may be circumvented; no automated enforcement |
 | CC-05 | Credit note approval threshold ($1K) with director sign-off | Yuki Tanaka | **Adequate** — Tolerable residual risk with quarterly monitoring |
-| CC-06 | Audit logging for all procurement transactions | All | **Inadequate** — Logs are collected but not reviewed by management |
+| CC-06 | Audit logging for all procurement transactions (See F-018) | All | **Inadequate** — Logs are collected but not reviewed by management |
 | CC-07 | Segregation of IT and business roles policy | David Kim | **Inadequate** — Policy does not exist; no compensating controls in place |
 
 ### Compensating Control Recommendations
@@ -118,7 +120,7 @@ All 214 users were analyzed against the defined incompatible pair matrix. The fo
 
 ## ERPNext-Specific SOD Considerations
 
-ERPNext does not natively enforce segregation of duties at the role assignment level. The following technical limitations were noted:
+ERPNext does not natively enforce Segregation of Duties at the role assignment level. The following technical limitations were noted:
 
 - No built-in conflict detection when assigning roles to users
 - No workflow enforcement preventing a user from holding two conflicting roles

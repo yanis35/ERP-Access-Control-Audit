@@ -12,10 +12,10 @@
 AeroLogistics Solutions uses a semi-formal process for granting ERPNext access. The process is documented in the IT Security Policy (ISP-017) but is not consistently enforced:
 
 1. **Request Initiation** — The hiring manager or department head submits an Access Request Form (paper-based or email) to the IT Service Desk
-2. **Department Head Approval** — The request must be approved by the requestor's department head (no secondary approval required for cross-module access)
+2. **Department Head Approval** — The request must be approved by the requester's department head (no secondary approval required for cross-module access)
 3. **IT Provisioning** — The IT support team creates the user account in ERPNext and assigns role profiles based on the request form
 4. **Notification** — IT notifies the requestor upon completion; no formal confirmation of access accuracy is obtained from the department head post-provisioning
-5. **Periodic Review** — Access recertification is performed on an ad-hoc basis; no annual recertification cycle exists
+5. **Periodic Review** — Access recertification is performed on an ad hoc basis; no annual recertification cycle exists
 
 ---
 
@@ -35,7 +35,7 @@ A statistical sample of 25 access requests was selected from 147 access request 
 | AR-002 | Maria Santos | Accounts Payable role | Finance Manager | Accounts Payable + Payment Approver | Role mismatch — extra role assigned | F-002 |
 | AR-003 | James Okonkwo | Operations Analyst role | Operations Director | Operations Analyst (correct) | Matched | Pass |
 | AR-004 | Priya Sharma | Accountant role | Finance Manager | Accountant (correct) | Matched | Pass |
-| AR-005 | David Kim | IT Support role | IT Director | IT Support + System Administrator (read-only) | Extra role assigned; no approval for SysAdmin access | F-003 |
+| AR-005 | David Kim | IT Support role | IT Director | IT Support + System Manager (read-only) | Extra role assigned; no approval for SysAdmin access | F-003 |
 | AR-006 | Lisa Thompson | Procurement Officer role | Procurement Manager | Procurement Officer + Buyer | Extra role assigned, not requested | F-001 |
 | AR-007 | Ahmed Hassan | Inventory Clerk role | Warehouse Manager | Inventory Clerk (correct) | Matched | Pass |
 | AR-008 | Elena Popescu | Finance Controller role | CFO | Finance Controller (correct) | Matched | Pass |
@@ -68,7 +68,7 @@ A statistical sample of 25 access requests was selected from 147 access request 
 | Recertification Event | Date | Scope | Completeness | Outcome |
 |---|---|---|---|---|
 | Planned Annual Recertification | N/A | All users | Never performed | No formal recertification program exists |
-| Ad-Hoc Review (Post-Incident) | Dec 2025 | Finance & Procurement only | Partial — 43 of 214 users reviewed | 5 inappropriate access rights identified but not remediated until Jun 2026 |
+| Ad hoc Review (Post-Incident) | Dec 2025 | Finance & Procurement only | Partial — 43 of 214 users reviewed | 5 inappropriate access rights identified but not corrected until June 2026 |
 | IT Self-Review (User List) | Mar 2026 | All users (system-level) | User list exported but no role verification | No action taken |
 
 ### Recertification Findings
